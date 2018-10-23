@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TareasService } from '../../servicios/tareas.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-pendientes',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendientesComponent implements OnInit {
 
-  constructor() { }
+  usuario:any;
+
+  constructor(public tareasService:TareasService) { 
+    this.usuario = tareasService.usuario;
+    //console.log(this.usuario);
+  }
 
   ngOnInit() {
   }
+
+  registrarTarea(forma:NgForm){
+      console.log(forma.value);
+      this.tareasService.crearTarea(forma.value);
+  }  
 
 }

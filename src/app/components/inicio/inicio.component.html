@@ -12,23 +12,20 @@
             <!--Redes sociales-->
             <ul class="list-inline text-center">
                 <li class="list-inline-item">
-                    <button type="button" class="btn btn-primary mb-1"><i class="fab fa-google"></i></button>
+                    <button (click)="tareasService.loginGoogle()" type="button" class="btn btn-primary mb-1"><i class="fab fa-google"></i></button>
                 </li>
-                <li class="list-inline-item">
-                    <button type="button" class="btn btn-primary mb-1"><i class="fab fa-facebook-f"></i></button>
-                </li>
-                <li class="list-inline-item">
+                <!-- <li class="list-inline-item">
                     <button type="button" class="btn btn-primary mb-1"><i class="fab fa-twitter"></i></button>
-                </li>
+                </li> -->
             </ul>
 
-            <form>
+            <form #forma="ngForm" (ngSubmit)="ingresarCorreo(forma)">
                 <div class="form-group">
-                    <input name="correo" type="email" class="form-control" placeholder="Correo">
+                    <input ngModel name="correo" type="email" class="form-control" placeholder="Correo">
                 </div>
 
                 <div class="form-group">
-                    <input name="contrasenia" type="password" class="form-control" placeholder="Contraseña">
+                    <input ngModel name="contrasenia" type="password" class="form-control" placeholder="Contraseña">
                 </div>
 
                 <div class="form-group form-check">
@@ -51,26 +48,20 @@
     <div *ngIf="!mostrarLogin" class="row mt-5 justify-content-center">
         <div class="col-10 col-sm-10 col-md-6 col-lg-4 borde">
             <p class="lead text-center">Registrate</p>
-            <form (ngSubmit)="prueba()">
+            <form #formaRegistro="ngForm" (ngSubmit)="registrarCorreo(formaRegistro)">
+
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+                    <input ngModel type="text" class="form-control" placeholder="Nombre" name="nombre">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Apellido(s)" name="apellidos">
+                    <input ngModel type="email" class="form-control" placeholder="Correo Electronico" name="correo">
                 </div>
 
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Correo Electronico" name="correo">
+                    <input ngModel type="password" class="form-control" placeholder="Contraseña" name="contrasenia">
                 </div>
 
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña" name="contrasenia">
-                </div>
-
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Confirmar contraseña" name="contrasenia2">
-                </div>
 
                 <button type="submit" class="btn btn-outline-primary btn-sm mb-2">Registrar</button>
             </form>

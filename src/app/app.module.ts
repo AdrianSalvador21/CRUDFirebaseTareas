@@ -5,9 +5,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //Firebase
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+
+//Servicios
+import {TareasService} from "./servicios/tareas.service";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -18,6 +22,9 @@ import { CompletadasComponent } from './components/completadas/completadas.compo
 // Rutas
 import { APP_ROUTING } from './app.routes';
 import { PendientesComponent } from './components/pendientes/pendientes.component';
+
+//Guard
+import { ValidacionInicioGuard } from './servicios/validacion-inicio.guard';
 
 @NgModule({
   declarations: [
@@ -31,12 +38,16 @@ import { PendientesComponent } from './components/pendientes/pendientes.componen
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule, 
+    AngularFireAuthModule,
     APP_ROUTING,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    TareasService,
+    ValidacionInicioGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TareasService } from '../../servicios/tareas.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-inicio',
@@ -10,14 +11,19 @@ export class InicioComponent implements OnInit {
 
   mostrarLogin:boolean = true;
 
-  constructor() { }
+  constructor(public tareasService:TareasService) { }
 
   ngOnInit() {
   }
 
-  prueba(){
-    console.log('hola');
-    
+  ingresarCorreo(forma:NgForm){
+    //console.log(forma.value);
+    this.tareasService.loginCorreo(forma.value.correo, forma.value.contrasenia);
+  }
+
+  registrarCorreo(forma:NgForm){
+    console.log(forma.value);
+    this.tareasService.registrarUsuario(forma.value);
   }
 
 }
